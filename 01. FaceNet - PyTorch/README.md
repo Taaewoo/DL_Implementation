@@ -5,5 +5,6 @@
 - Review : [PDF Link](https://github.com/Taaewoo/Paper_review/blob/master/09.%20FaceNet%3B%20A%20Unified%20Embedding%20for%20Face%20Recognition%20and%20Clustering.pdf)  
   
 ## Week 2  
-- TODO : FaceNet Code Review  
+- TODO : FaceNet Code Review & implementation using PyTorch ( extract 128-d feature vector )
 - Reference : [FaceNet-tensorflow github](https://github.com/davidsandberg/facenet)
+
