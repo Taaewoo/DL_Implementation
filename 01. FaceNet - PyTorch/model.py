@@ -73,16 +73,8 @@ class Net(nn.Module):
                 self.fc7128,
         )
 
-
         summary(self.cnn, (3,220,220) )
-
 
     def forward(self, x):
         x = self.cnn(x)
         return x
-
-def main():
-    pass
-
-if __name__ == '__main__':
-    main()
