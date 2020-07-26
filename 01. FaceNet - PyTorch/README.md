@@ -1,4 +1,4 @@
-# FaceNet - Pytorch  
+# FaceNet - PyTorch  
 ## Week 1  
 - TODO :  FaceNet Paper Review.  
 - Paper : [FaceNet](https://arxiv.org/pdf/1503.03832.pdf)  
@@ -23,3 +23,6 @@
 
 ### **Distance of triplet**
 ![image](https://user-images.githubusercontent.com/28804154/88461780-87d3f580-cee1-11ea-8a4d-bd832cc3d82b.png)
+
+## Week 3
+- TODO : Implementation selecting triplet from VGG dataset
