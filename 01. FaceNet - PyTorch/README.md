@@ -23,6 +23,8 @@
 
 ### **Distance of triplet**
 ![image](https://user-images.githubusercontent.com/28804154/88461780-87d3f580-cee1-11ea-8a4d-bd832cc3d82b.png)
-
+  
+<br>  
+  
 ## Week 3
 - TODO : Implementation selecting triplet from VGG dataset
