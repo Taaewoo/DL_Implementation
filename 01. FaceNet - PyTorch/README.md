@@ -27,4 +27,5 @@
 <br>  
   
 ## Week 3
-- TODO : Implementation selecting triplet from VGG dataset
+- TODO : Implementation selecting triplet from CASIA-WebFace dataset.
+- CASIA-WebFace dataset : [Download link](https://drive.google.com/open?id=1Of_EVz-yHV7QVWQGihYfvtny9Ne8qXVz)
