@@ -34,5 +34,5 @@
 ### **Crop the CASIA-WebFace image files using MTCNN**
 
 #### - It takes about 7 hours to crop 491,542 image files
-#### - I used [facenet github's align soure code] (https://github.com/davidsandberg/facenet/tree/master/src/align)
+#### - I used [facenet github's align soure code](https://github.com/davidsandberg/facenet/tree/master/src/align)
 <img src="https://user-images.githubusercontent.com/28804154/89706169-1ba3c800-d99e-11ea-87b2-ab10edc72ffa.png"  width="50%" height="50%">
