@@ -17,7 +17,7 @@
 <br>  
 
 ### **MTCNN result of triplet**
-![image](https://user-images.githubusercontent.com/28804154/88461635-265f5700-cee0-11ea-8ed7-52f073ce5a33.png)
+<img src="https://user-images.githubusercontent.com/28804154/88461635-265f5700-cee0-11ea-8ed7-52f073ce5a33.png"  width="50%" height="50%">
 
 <br>  
 
@@ -29,3 +29,9 @@
 ## Week 3
 - TODO : Implementation selecting triplet from CASIA-WebFace dataset.
 - CASIA-WebFace dataset : [Download link](https://drive.google.com/open?id=1Of_EVz-yHV7QVWQGihYfvtny9Ne8qXVz)
+<br>  
+
+### **Crop the CASIA-WebFace image files using MTCNN**
+
+#### - It takes about 7 hours to crop 491,542 image files
+<img src="https://user-images.githubusercontent.com/28804154/89706169-1ba3c800-d99e-11ea-87b2-ab10edc72ffa.png"  width="50%" height="50%">
