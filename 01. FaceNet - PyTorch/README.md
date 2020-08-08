@@ -38,7 +38,7 @@
 
 <br>
 
-### **Overriding PyTorch Dataset class method for custom triplet data**
+### **Override PyTorch Dataset class method for custom triplet data**
 #### - Customizing dataset
 ~~~python
 class TripletDataset(torch.utils.data.Dataset): 
@@ -59,7 +59,7 @@ class TripletDataset(torch.utils.data.Dataset):
 ~~~
 <br>
 
-#### - Loading the custom data as much as the batch size
+#### - Load the custom data as much as the batch size
 ~~~python
 trans = transforms.Compose([transforms.ToTensor()])
 
@@ -75,4 +75,8 @@ for i, data in enumerate(trainloader):
 <br>
 
 ## Week 4
-- TODO : Implementation selecting triplet from CASIA-WebFace dataset.
+- TODO : Implementation of selecting triplet from CASIA-WebFace dataset.
+<br>
+
+### **Load triplet set using DataLoader & Calculate L2 distance**
+<img src="https://user-images.githubusercontent.com/28804154/89710067-e6f23980-d9ba-11ea-86e7-827486fbd14e.png"  width="50%" height="50%">
