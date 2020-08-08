@@ -27,12 +27,52 @@
 <br>  
   
 ## Week 3
-- TODO : Implementation selecting triplet from CASIA-WebFace dataset.
+- TODO : Cropping CASIA-WebFace dataset using MTCNN & Customizing the PyTorch Dataset class for triplet.
 - CASIA-WebFace dataset : [Download link](https://drive.google.com/open?id=1Of_EVz-yHV7QVWQGihYfvtny9Ne8qXVz)
 <br>  
 
 ### **Crop the CASIA-WebFace image files using MTCNN**
-
 #### - It takes about 7 hours to crop 491,542 image files
 #### - I used [facenet github's align soure code](https://github.com/davidsandberg/facenet/tree/master/src/align)
 <img src="https://user-images.githubusercontent.com/28804154/89706169-1ba3c800-d99e-11ea-87b2-ab10edc72ffa.png"  width="50%" height="50%">
+
+<br>
+
+### **Overriding PyTorch Dataset class method for custom triplet data**
+#### - Customizing dataset
+~~~python
+class TripletDataset(torch.utils.data.Dataset): 
+  def __init__(self):
+      # override
+      # Initializing class variable like dataset path, pytorch transform, custom data.
+      
+  def __len__(self):
+      # override
+      # return custom data length.
+
+  def __getitem__(self, idx): 
+      # override
+      # return custom data with index.
+      
+  def generate_triplet(self):
+      # generate triplet set using CASIA-WebFace dataset.
+~~~
+<br>
+
+#### - Loading the custom data as much as the batch size
+~~~python
+trans = transforms.Compose([transforms.ToTensor()])
+
+trainloader = DataLoader(dataset=TripletDataset(root_dir="data/CASIA-WebFace-MTCNN", transform = trans),
+                         batch_size = 64, 
+                         num_workers=20)
+                         
+for i, data in enumerate(trainloader):
+    # batch number i
+    # bath size data
+~~~
+
+<br>
+
+## Week 4
+- TODO : Implementation selecting triplet from CASIA-WebFace dataset.
