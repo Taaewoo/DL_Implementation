@@ -12,7 +12,7 @@
 <br>  
 
 ### NN
-<img width="1383" alt="NN1" src="https://user-images.githubusercontent.com/28804154/88418802-12075580-ce1f-11ea-85e8-b1974475b593.png">
+<img src="https://user-images.githubusercontent.com/28804154/88418802-12075580-ce1f-11ea-85e8-b1974475b593.png"  width="80%" height="80%">
 
 <br>  
 
