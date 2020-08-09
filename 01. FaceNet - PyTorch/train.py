@@ -2,69 +2,69 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
-import matplotlib.pyplot as plt
+import os
+import random
+import torchvision
 
-from model import Net
+from model import *
+from triplet_dataloader import *
 from numpy import asarray
 from mtcnn.mtcnn import MTCNN
 from PIL import Image
+from matplotlib import pyplot as plt
 from torchvision.models import resnet50
+from torchvision import transforms
+from torch.utils.data import Dataset, DataLoader
 
-# 주어진 사진에서 하나의 얼굴 추출
-def extract_face(filename, required_size=(220, 220)):
-	image = Image.open(filename)
-	image = image.convert('RGB')
-	pixels = asarray(image)
-	detector = MTCNN()
-	results = detector.detect_faces(pixels)
-	x1, y1, width, height = results[0]['box']
-	x1, y1 = abs(x1), abs(y1)
-	x2, y2 = x1 + width, y1 + height
-	face = pixels[y1:y2, x1:x2]
-	image = Image.fromarray(face)
-	image = image.resize(required_size)
-	face_array = asarray(image)
-	return face_array
+num_epoch = 500
+num_batch_per_epoch = 1000
+people_per_batch = 45
+images_per_person = 40
+margin = 0.2
 
-# 220:220:3
-anchor = extract_face("Joo.jpg")
-positive = extract_face("Joo2.jpg")
-negative = extract_face("Kim.jpg")
+def cal_l2_distance(a, b):
+    return ((a - b)**2).sum().item()
 
-face = [anchor, positive, negative]
+model = FaceNet()
+
+trans = transforms.Compose([transforms.ToTensor()])
+
+# trainset은 길이가 정해져 있고 한번 loop에 batch_size만큼 가져옴.
+trainloader = DataLoader(dataset=TripletDataset(root_dir="data/CASIA-WebFace-MTCNN", transform = trans), batch_size = 64, num_workers=20)
 
 
-fig = plt.figure()
+a_p_distance = []
+a_n_distance = []
 
-ax1 = fig.add_subplot(1,3,1)
-ax1.imshow(anchor)
-ax1.set_title("Anchor")
-ax1.axis("off")
-
-ax1 = fig.add_subplot(1,3,2)
-ax1.imshow(positive)
-ax1.set_title("Positive")
-ax1.axis("off")
-
-ax1 = fig.add_subplot(1,3,3)
-ax1.imshow(negative)
-ax1.set_title("Negative")
-ax1.axis("off")
-
-plt.show()
-
-
-face = np.array(face)
-face = np.transpose(face,(0,3,1,2))
-face = torch.from_numpy(face)
-
-print(face.shape)
-net = Net()
-#print(net)
-#print(face.float())
-outputs = net(face.float())
-#print(outputs)
-print("")
-print("Anchor <-> Positive distance : " + str(((outputs[0] - outputs[1])**2).sum().item()) )
-print("Anchor <-> Negative distance : " + str(((outputs[0] - outputs[2])**2).sum().item()) )
-
+for i, data in enumerate(trainloader):
+    print("Batch Number :", i+1)
+    
+    anc_fv = model(data['anc_img'])
+    pos_fv = model(data['pos_img'])
+    neg_fv = model(data['neg_img'])
+    
+    print("Batch Size :",anc_fv.shape[0])
+    
+    for j in range(anc_fv.shape[0]):
+        pos_dis = cal_l2_distance(anc_fv[j],pos_fv[j])
+        neg_dis = cal_l2_distance(anc_fv[j],neg_fv[j])
+        
+        print("Anchor <-> Positive :", pos_dis)
+        print("Anchor <-> Negative :", neg_dis)
+        
+        if(pos_dis < neg_dis):
+            print("Semi - hard")
+            a_p_distance.append(pos_dis)
+            a_n_distance.append(neg_dis)
+            
+    print("")
+    
+    if(len(a_p_distance) > 64):
+        a_p_distance = torch.tensor(a_p_distance)
+        a_n_distance = torch.tensor(a_n_distance)
+        
+        losses = torch.clamp(a_p_distance - a_n_distance + margin, min=0.0)
+        loss = torch.mean(losses)
+        print(losses)
+        print(loss)
+        break
