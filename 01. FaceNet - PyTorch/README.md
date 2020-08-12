@@ -71,7 +71,6 @@ for i, data in enumerate(trainloader):
     # batch number i
     # bath size data
 ~~~
-
 <br>
 
 ## Week 4
@@ -80,3 +79,34 @@ for i, data in enumerate(trainloader):
 
 ### **Load triplet set using DataLoader & Calculate L2 distance**
 <img src="https://user-images.githubusercontent.com/28804154/89710067-e6f23980-d9ba-11ea-86e7-827486fbd14e.png"  width="50%" height="50%">
+<br>
+
+### **Selecting semi-hard dataset & Calculate triplet loss**
+~~~python
+pos_dis = l2_distance.forward(anc_fv,pos_fv)
+neg_dis = l2_distance.forward(anc_fv,neg_fv)
+
+all = (pos_dis < neg_dis).cpu().numpy().flatten()
+
+losses = torch.clamp(pos_dis[all] - neg_dis[all] + margin, min=0.0)
+loss = torch.mean(losses)
+~~~
+<br>
+  
+## Week 5
+- TODO : Learning neural network & Validation.
+<br>
+
+### **Transfer tensor variable CPU to GPU**
+#### - It is essential to use GPU for PyTorch neural network learning
+~~~python
+model.cuda()
+
+anc_fv = model(data['anc_img'].cuda())
+pos_fv = model(data['pos_img'].cuda())
+neg_fv = model(data['neg_img'].cuda())
+~~~
+<br>
+
+### **Learning neural network**
+<img src="https://user-images.githubusercontent.com/28804154/89985202-a42faa80-dcb5-11ea-8ec9-8fb9bbd963cb.png"  width="50%" height="50%">
