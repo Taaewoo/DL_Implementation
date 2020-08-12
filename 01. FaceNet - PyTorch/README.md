@@ -110,3 +110,8 @@ neg_fv = model(data['neg_img'].cuda())
 
 ### **Learning neural network**
 <img src="https://user-images.githubusercontent.com/28804154/89985202-a42faa80-dcb5-11ea-8ec9-8fb9bbd963cb.png"  width="50%" height="50%">
+<br>
+
+### **Prepare validation dataset**
+<img src="https://user-images.githubusercontent.com/28804154/89986048-f1f8e280-dcb6-11ea-8139-cb23215ecfb9.png"  width="50%" height="50%">
+<br>
