@@ -115,3 +115,7 @@ neg_fv = model(data['neg_img'].cuda())
 ### **Prepare validation dataset**
 <img src="https://user-images.githubusercontent.com/28804154/89986048-f1f8e280-dcb6-11ea-8139-cb23215ecfb9.png"  width="50%" height="50%">
 <br>
+
+### **Training result**
+<img alt="image" src="https://user-images.githubusercontent.com/28804154/90315668-27702b00-df58-11ea-86dd-ff43d26620e7.png" width="80%" height="80%">
+<img alt="image" src="https://user-images.githubusercontent.com/28804154/90315753-e2002d80-df58-11ea-96e6-18e1b777af3f.png" width="80%" height="80%">
