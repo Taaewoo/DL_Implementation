@@ -92,6 +92,7 @@ class TripletDataset(Dataset):
                         #for n_i in range(len(image_path[j])):
                             #temp_triplet['Neg'] = n_i
                             
-        print(len(triplet))
+        #print(len(triplet)) 
         random.shuffle(triplet)
         return triplet
+
